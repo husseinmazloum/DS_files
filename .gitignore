@@ -1,0 +1,7 @@
+# Unnecessary Folders
+Workbench-Build125/
+Jupyter/
+.DS_Store
+
+# Already a git repo from previous tutorial
+Github/
