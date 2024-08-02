@@ -60,7 +60,7 @@ from sklearn.tree import plot_tree
 
 plt.figure(figsize=(25, 15))
 tree = plot_tree(regressor,
-                 feature_names = X.columns,
+                 feature_names = list(X.columns),
                  filled = True,
                  rounded = True,
                  fontsize = 24)
