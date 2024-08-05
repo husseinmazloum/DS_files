@@ -170,14 +170,47 @@ plt.show()
 
 ## Permutation Importance
 
+result = permutation_importance(regressor, X_test, y_test, n_repeats = 10, random_state = 42)
 
+permutation_importance = pd.DataFrame(result["importances_mean"])
+feature_names = pd.DataFrame(X.columns)
 
+permutation_importance_summary = pd.concat([feature_names, permutation_importance], axis = 1)
+permutation_importance_summary.columns = ["input_variable", "permutation_importance"]
+permutation_importance_summary.sort_values(by = "permutation_importance", inplace = True)
 
+## Plot Permutation Importance 
 
+plt.barh(permutation_importance_summary["input_variable"], permutation_importance_summary["permutation_importance"])
+plt.title("Permutation Importance of Random Forest")
+plt.xlabel("Permutation Importance")
+plt.tight_layout()
+plt.show()
 
+## Predictions under the hood
 
+y_pred[0]
+new_data = [X_test.iloc[0]]
+regressor.estimators_
 
+predictions = []
+tree_count = 0 
 
+for tree in regressor.estimators_:
+    prediction = tree.predict(new_data)[0]
+    predictions.append(prediction)
+    tree_count += 1
+
+print(predictions)
+
+sum(predictions) / tree_count
+
+## Save files
+
+import pickle
+
+pickle.dump(regressor, open("data/random_forest_regression_model.p", "wb"))
+pickle.dump(one_hot_encoder, open("data/random_forest_regression_ohe.p", "wb"))
 
 
 
