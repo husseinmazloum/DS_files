@@ -52,8 +52,9 @@ y_pred_prob = clf.predict_proba(X_test)
 conf_matrix = confusion_matrix(y_test, y_pred)
 print(conf_matrix)
 
-import numpy as np
+## Plot Confusion Matrix
 
+import numpy as np
 
 plt.style.available
 
