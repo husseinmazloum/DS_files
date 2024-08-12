@@ -1,7 +1,7 @@
 
 
 ##############################################
-## Regression Tree - ABC Grocery
+## Classification Tree - ABC Grocery Task
 ##############################################
 
 
@@ -13,11 +13,12 @@
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
+import numpy as np
 
-from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split, cross_val_score, KFold
-from sklearn.metrics import r2_score
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import OneHotEncoder
 ## from sklearn.feature_selection import RFECV
 
@@ -29,7 +30,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 ## Import
 
-data_for_model = pickle.load(open("data/abc_regression_modelling.p", "rb"))
+data_for_model = pd.read_pickle("data/abc_classification_modelling.p")
 
 ## Drop Unneccessary columns
 
@@ -38,6 +39,10 @@ data_for_model.drop(["customer_id"], axis = 1, inplace = True)
 ## Shuffle Data
 
 data_for_model = shuffle(data_for_model, random_state = 42)
+
+## Class Balance
+
+data_for_model["signup_flag"].value_counts(normalize = True)
 
 ######################################################################
 ## Deal with Missing Values
@@ -48,23 +53,23 @@ data_for_model.dropna(how = "any", inplace = True)
 
 
 ######################################################################
-## Deal with Outliers
+## Deal with Outliers - Not Really needed for decision trees
 ######################################################################
 
-## No need to remove outliers for decision trees. 
+
 
 ######################################################################
 ## Split Input Variables and Output Variable
 ######################################################################
 
-X = data_for_model.drop(["customer_loyalty_score"], axis = 1)
-y = data_for_model["customer_loyalty_score"]
+X = data_for_model.drop(["signup_flag"], axis = 1)
+y = data_for_model["signup_flag"]
 
 ######################################################################
 ## Split out Training and Test Sets
 ######################################################################
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify = y)
 
 ######################################################################
 ## Deal with Categorical Variables
@@ -88,16 +93,13 @@ X_test = pd.concat([X_test.reset_index(drop=True), X_test_encoded.reset_index(dr
 X_test.drop(categorical_vars, axis = 1, inplace = True)
 
 ######################################################################
-## Feature Selection
+## Feature Selection - Only useful for decision trees when there are many input variables, to reduce
+## noise and for computational speed.
 ######################################################################
 
-## Feature Selection not really needed to improve the accuracy of the decision tree, but may help with  
-## the computational speed when reducing the amount of input variables.
-## Commented out below but we can use it if needed.
-
 """
-regressor = DecisionTreeRegressor()
-feature_selector = RFECV(regressor)
+clf = LogisticRegression(random_state = 42, max_iter = 1000)
+feature_selector = RFECV(clf)
 
 fit = feature_selector.fit(X_train, y_train)
 
@@ -119,56 +121,78 @@ plt.show()
 ## Model Training
 ######################################################################
 
-regressor = DecisionTreeRegressor(max_depth = 4, random_state = 42)
-regressor.fit(X_train, y_train)
+clf = DecisionTreeClassifier(random_state = 42, max_depth = 5)
+clf.fit(X_train, y_train)
 
 ######################################################################
 ## Model Assessment
 ######################################################################
 
 
-## Predict on the Test Set
+## Assess model accuracy
 
-y_pred = regressor.predict(X_test)
+y_pred_class = clf.predict(X_test)
+y_pred_prob = clf.predict_proba(X_test)[:,1]
 
-## Calculate R-Squared
 
-r_squared = r2_score(y_test, y_pred)
-print(r_squared)
+## Confusion Matrix
 
-## Cross Validation
+conf_matrix = confusion_matrix(y_test, y_pred_class)
+print(conf_matrix)
 
-cv = KFold(n_splits = 4, shuffle = True, random_state = 42)
-cv_scores = cross_val_score(regressor, X_train, y_train, cv = cv, scoring = "r2")
-cv_scores.mean()
+## Plot Confusion Matrix
 
-## Calculate Adjusted R-Squared
 
-num_data_points, num_input_vars = X_test.shape
-adjusted_r_squared = 1 - (1 - r_squared) * (num_data_points - 1) / (num_data_points - num_input_vars - 1)
-print(adjusted_r_squared)
+plt.style.available
 
-## A Demonstraion of Overfitting
+plt.style.use("seaborn-v0_8-poster")
+plt.matshow(conf_matrix, cmap = "coolwarm")
+plt.gca().xaxis.tick_bottom()
+plt.title("Confusion Matrix")
+plt.ylabel("Actual Class")
+plt.xlabel("Predicted Class")
+for (i, j), corr_value in np.ndenumerate(conf_matrix):
+    plt.text(j, i, corr_value, ha = "center", va = "center", fontsize = 20)
+plt.show()
 
-y_pred_training = regressor.predict(X_train)
-r2_score(y_train, y_pred_training)
+
+
+## Accuracy (the number of correct classifications out of all the attempted classifications)
+
+accuracy_score(y_test, y_pred_class)
+
+
+## Precision (of all observations that were predicted as positive, how many were actually positive)
+
+precision_score(y_test, y_pred_class)
+
+
+## Recall (of all positive observations, how many did we predict as positive)
+
+recall_score(y_test, y_pred_class)
+
+
+## F1-Score (the harmonic mean of precision and recall)
+
+f1_score(y_test, y_pred_class)
+
 
 ## Finding the best Max Depth
 
 ## The Max Depth with the best accuracy isn't neccessarily the best one to choose 
 ## for our model. Because this could cause over fitting. In this example, 
-## a max depth of 7 would give produce the most accurate model, but we choose a
-## max depth of 4 instead. This sacrifices a bit on accuracy, but makes our model
+## a max depth of 9 would give produce the most accurate model, but we choose a
+## max depth of 5 instead. This sacrifices a bit on accuracy, but makes our model
 ## simpler and easier to explain to stakeholders. This also reduces over fitting.
 
-max_depth_list = list(range(1,9))
+max_depth_list = list(range(1,15))
 accuracy_scores = []
 
 for depth in max_depth_list:
-    regressor = DecisionTreeRegressor(max_depth = depth, random_state = 42)
-    regressor.fit(X_train, y_train)
-    y_pred = regressor.predict(X_test)
-    accuracy = r2_score(y_test, y_pred)
+    clf = DecisionTreeClassifier(max_depth = depth, random_state = 42)
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    accuracy = f1_score(y_test, y_pred)
     accuracy_scores.append(accuracy)
 
 max_accuracy = max(accuracy_scores)
@@ -180,9 +204,9 @@ optimal_depth = max_depth_list[max_accuracy_idx]
 
 plt.plot(max_depth_list, accuracy_scores)
 plt.scatter(optimal_depth, max_accuracy, marker = "x", color = "red")
-plt.title(f"Accuracy by Max Depth \n Optimal Tree Depth: {optimal_depth} (Accuracy: {round(max_accuracy, 4)})")
+plt.title(f"Accuracy (F1 Score) by Max Depth \n Optimal Tree Depth: {optimal_depth} (Accuracy: {round(max_accuracy, 4)})")
 plt.xlabel("Max Depth of Decision Tree")
-plt.ylabel("Accuracy")
+plt.ylabel("Accuracy (F1 Score)")
 plt.tight_layout()
 plt.show()
 
@@ -190,7 +214,7 @@ plt.show()
 ## Plot Our Model
 
 plt.figure(figsize=(25, 15))
-tree = plot_tree(regressor,
+tree = plot_tree(clf,
                  feature_names = list(X.columns),
                  filled = True,
                  rounded = True,
@@ -198,12 +222,11 @@ tree = plot_tree(regressor,
 
 
 
+## A Demonstraion of Overfitting - Our Model is overfitting even at a max depth of 5
 
 
-
-
-
-
+y_pred_training = clf.predict(X_train)
+accuracy_score(y_train, y_pred_training)
 
 
 
