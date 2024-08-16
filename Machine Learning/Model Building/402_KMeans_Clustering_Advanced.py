@@ -35,7 +35,7 @@ transactions.drop(transactions[transactions["product_area_name"] == "Non-Food"].
 
 ## Aggregate sales at customer level (by product area)
 
-transaction_summary = transactions.groupby(["customer_id", "product_area_name"])["sales_cost"].sum()
+transaction_summary = transactions.groupby(["customer_id", "product_area_name"])["sales_cost"].sum().reset_index()
 
 
 ## Pivot data to place product areas as columns
