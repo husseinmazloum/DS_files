@@ -68,8 +68,6 @@ post_period = ["2020-07-01", "2020-09-30"]
 
 ci = CausalImpact(causal_impact_df, pre_period, post_period)
 
-ci.run() ## added this to avoid an error message, not sure if it's always needed
-
 
 #########################################################
 ## Plot the impact
