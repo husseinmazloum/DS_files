@@ -1,0 +1,45 @@
+Questions to ask before using Data Science tools:
+
+1) What is the business goal for this project?
+
+- What it means: To get a high level understanding of what the project is. How the outputs should look and the metrics for measuring success.
+
+- Why we ask: This helps frame and direct the entire project. Redirects our thinking toward the best solutions. To get the main goals and if possible push for specific goals.
+
+- Who might have the answer: Key stakeholders. Project managers guide you to the source.
+
+
+2) Can this project be solved or enhanced through the use of data, and Data Science?
+
+- What it means: To understand if the data science team is needed.
+
+- Why we ask: For efficiency because data scientists are usually busy.
+
+- Who might have the answer: Talk with key stakeholders and our guidance is key to answer this question, since we are the data experts and know what we can do with the data we have access to.
+
+
+3) What is the Minimum Viable Product (MVP)?
+
+- What it means: MVP is a version of the product or solution with the minimal amount of features to satisfy the goal of the project. Test the waters and prove out the idea to the business.
+
+- Why we ask: So we don't go too far on a project that is not viable or useful to the business. Higher likelihood of solution going into production if all key stakeholders agree on the MVP. If the project is a failure, it will fail fast and not waste resources.
+
+- Who might have the answer: All teams involved because it is essentially a mini solution for our project. Data science team will play a big part because we are the data experts.
+
+
+4) When does the project need to be implemented or completed?
+
+- What it means:
+
+- Why we ask: This information allows us to think about what is and is not possible, and for allocation of resources to the project.
+
+- Who might have the answer:
+
+
+5) Are there any considerations around ethics or compliance?
+
+- What it means:
+
+- Why we ask:
+
+- Who might have the answer:
