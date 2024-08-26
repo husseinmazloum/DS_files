@@ -1,4 +1,5 @@
-Questions to ask before using Data Science tools:
+Getting to the Core of the business problem
+This section will help us become a great data scientist instead of just a good one. Thinking from the business point of view and being able to add value is more valuable than just being able to code and memorize machine learning models. 
 
 1) What is the business goal for this project?
 
@@ -31,15 +32,89 @@ Questions to ask before using Data Science tools:
 
 - What it means:
 
-- Why we ask: This information allows us to think about what is and is not possible, and for allocation of resources to the project.
+- Why we ask: This information allows us to think about what is and is not possible, and for allocation of resources to the project. Also have to know the timeline for MVP to be completed.
 
-- Who might have the answer:
+- Who might have the answer: Data science manager.
 
 
 5) Are there any considerations around ethics or compliance?
 
-- What it means:
+- What it means: We have to be aware around the permissions we have for certain data sources.
 
-- Why we ask:
+- Why we ask: We have to be aware of potential bias in historical data, because our models will make predictions that will propagate the bias.
 
 - Who might have the answer:
+
+
+Deciding on the right Data Science solution
+
+1) What work has been done before in this area?
+
+- What it means: Has the company already done work like this and who has done it.
+
+- Why we ask: Efficiency. We have to know if we have to start from scratch.
+
+- Who might have the answer: Key stakeholder and managers of any data teams. Take any leads that you can.
+
+
+2) Who are we relying on, and who is relying on us?
+
+- What it means: Who do we rely on before we can start our work, and who is relying on us before they can start their work.
+
+- Why we ask: Figure out the workable solution for a dependent team so they we are not delivering something that is not useful. Figure out timeline and how frequently you should update dependent teams on progress.
+
+- Who might have the answer: Dependent teams and teams that we may need data from.
+
+
+3) What data is available, where is it, and what state is it in?
+
+- What it means: Determining what data we can use and how much effort required to make it useable. Also can figure out if there is data from external sources that we can tap into.
+
+- Why we ask: Because this affects timelines and we need to report back to the data science manager. We will also be able to figure out what is required of us to make the data usable for our project.
+
+- Who might have the answer: 
+
+
+4) What does the data tell us?
+
+- What it means: We can explore the data and feed back insights to key stakeholders.
+
+- Why we ask: We can give insights to key stakeholders to see if the data is answering the business goals of the project.
+
+- Who might have the answer: 
+
+
+5) What data is valuable, and what is not - and can we enhance the data further?
+
+- What it means: Narrow down data only to that which has value to the overall business goal.
+
+- Why we ask: We’ll want to see if we can enhance the data in any way through our human intuition and from what we have learned from speaking to key figures in the business about this project. Try to put yourself in the shoes of the end user and try to empathize with their needs.
+
+- Who might have the answer: 
+
+
+6) What tool or approach should we use, and why?
+
+- What it means: Determine what tool to use when there can be many options. Sometimes the approach to use is obvious or there may only be limited options.
+
+- Why we ask: This allows us to justify certain approaches we take with our projects. Documenting our approaches and insights along the way allows us to give others insights on their projects if we’re ever asked.
+
+- Who might have the answer: 
+
+
+7) How do we sync Data Science success metrics with the overall business success metrics?
+
+- What it means: Our success metrics within the models won’t mean a lot to key business decision makers, so we have to frame the results in a way they’ll understand. Use examples and use the metrics they care about the most.
+
+- Why we ask: This will increase our likelihood of having our solutions implemented and can add value to the business.
+
+- Who might have the answer: 
+
+
+8) How will this project or solution change over time?
+
+- What it means: Better to think about how a project can change when you are building it and not down the line. Also can get a feel for how well our solution will perform as time goes by.
+
+- Why we ask: We can put in performance tracking on models to verify if they are accurate over time, or may need to be updated at some point. This can be looked over if we are laser focused on getting our solutions into production, but this can be really important.
+
+- Who might have the answer: 
