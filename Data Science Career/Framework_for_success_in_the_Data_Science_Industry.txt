@@ -1,0 +1,85 @@
+Framework for success in the Data Science Industry
+This section will help us focus on how to get a good role in the data science industry. Focus on simple key changes to separate from other candidates. 
+
+
+Key Areas for Success during the interview process
+My Brand
+Portfolio, LinkdIn, Github
+Clean and concise resume
+Portfolio should have clarity, impact, value. It doesn’t need to have very complex projects.
+Applying
+Before submitting a resume, think about what I really want out of a role. Understanding what drives me is important because passion about what I’m working on makes it easier to continue to learn and have the energy/curiosity to keep going. 
+Passion can give you the edge over other candidates.
+Interviews
+Multistep process that can be exhausting but important to keep a positive attitude because all candidates are going through the same thing.
+Take home assignments, phone screens, on site interviews.
+Focus on the interviewers enjoying their time with you.
+
+
+My Brand
+
+Resume
+Overall appearance and features
+Keep it clean and without too much text. 1-2 pages max.
+Name in a big clear font at the top
+Outline what you can bring to a role
+Mention - “I am looking to solve problems with Data Science solutions”
+Mention main skills.
+Link Github, LinkdIn and Portfolio
+Listing out the work you have done
+Less is more, be concise and focus on impact.
+Each project needs 3 things:
+What you did
+How you did it
+What was the result or outcome - use tangible figures when possible.
+Order of sections of my resume
+Name
+Brief outline of what you can bring
+Work experience and projects
+Relevant skills
+Training and courses
+Add in 1-2 key learning when listing courses
+Education
+List it higher if it’s relevant to the role
+DO NOT PUT HOBBIES AND INTERESTS
+Use the space on the page efficiently
+DO NOT PUT PHOTO UNLESS REQUESTED
+How many different versions should I have?
+Try to have a good resume and stick with it.
+You can change the order of project if you think a company might take particular interest in one.
+
+Portfolio
+Demonstrate your skills and how you think about data science problems from inception to conclusion. The portfolio can also showcase projects for fields you are interested in, if you don’t have experience in that particular field.
+What projects should I include?
+Pick projects you are interested in, this will allow your passion to shine through when talking about it.
+Projects that demonstrate different skills like data cleaning, machine learning, data viz etc.
+Pick project where you can formulate a reason for doing it. Think about the project holistically, adding value to a business rather than doing a project in isolation.
+What does a good project look like?
+Focus on clear impact, not going super complex. Better for the project to be read to the end. Also makes it simpler to explain in interviews.
+Frame the project from inception, always know why you are looking to solve this.
+Know how you went about solving the problem. Have reasoning for choosing certain techniques over others.
+Know what you saw in the results and what it means in real terms.
+Code should be clear and commented. Using functions makes it easier to read.
+Start with an Overall Summary for each project
+This will outline the problem statement, the final technique used and the results.
+One paragraph max in length.
+This shows the reader the impact of the project right away.
+Complete the section last after everything else is done, but should be at the top of the project for the reader.
+Run through the data exploration steps you took and what was discovered
+List out possible approaches you investigated and the criteria you used to access them.
+Describe technical approaches simplistically and intuitively. Show you understand concepts well and help non technical recruiters understand what you’re doing. This will help them feel more confident in moving you forward.
+Outline and Justify the chosen approach
+Justify your approach and summarize why it was the best one.
+Results and Impact
+Summarize the results and impact that your solution had on the problem. 
+
+Small Changes for your brand that make a big difference
+Get a professional headshot
+Use Data Scientist title, even if you don’t have a role yet
+Reuse your resume for LinkedIn profile
+Add all relevant skills to LinkedIn profile
+Post and interact regularly on LinkedIn
+Comment and interact on other relevant posts. Even simple comments.
+
+
+Applying
